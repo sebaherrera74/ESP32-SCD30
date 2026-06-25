@@ -4,21 +4,21 @@
 #include "wifi.h"
 #include "web.h"
 #include "log.h"
+#include "screenManager.h"
 
 void setup()
 {
     logger.begin();
 
-    logger.info("ESP32 BASE");
-
     display.begin();
 
-    display.splash();
+    screen.begin();
+
+    screen.splash();
 
     logger.info("Sistema iniciado");
 }
 
-void loop()
-{
-
+void loop(){
+  
 }
