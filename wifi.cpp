@@ -1,4 +1,4 @@
-#include "wifi.h"
+#include "Wifi.h"
 
 void iniciarWiFi()
 {

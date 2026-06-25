@@ -1,10 +1,10 @@
-#include "config.h"
-#include "display.h"
-#include "sensor.h"
-#include "wifi.h"
-#include "web.h"
-#include "log.h"
-#include "screenManager.h"
+#include "Config.h"
+#include "Display.h"
+#include "Sensor.h"
+#include "Wifi.h"
+#include "Web.h"
+#include "Log.h"
+#include "ScreenManager.h"
 
 void setup()
 {

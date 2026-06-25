@@ -1,6 +1,6 @@
 #include "ScreenManager.h"
 
-#include "display.h"
+#include "Display.h"
 
 ScreenManager screen;
 

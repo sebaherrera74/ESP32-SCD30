@@ -1,4 +1,4 @@
-#include "sensor.h"
+#include "Sensor.h"
 
 float co2 = 0;
 float temperatura = 0;

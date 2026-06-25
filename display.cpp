@@ -1,6 +1,6 @@
-#include "display.h"
-#include "config.h"
-#include "log.h"
+#include "Display.h"
+#include "Config.h"
+#include "Log.h"
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
