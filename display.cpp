@@ -48,6 +48,28 @@ void Display::showMessage(String texto)
     oled.display();
 }
 
+void Display::showValue(String titulo,
+                        float valor,
+                        String unidad)
+{
+    oled.clearDisplay();
+
+    oled.setTextColor(WHITE);
+
+    oled.setTextSize(1);
+    oled.setCursor(0,0);
+    oled.println(titulo);
+
+    oled.setTextSize(3);
+    oled.setCursor(0,18);
+    oled.print(valor,0);
+
+    oled.setTextSize(1);
+    oled.print(" ");
+    oled.print(unidad);
+
+    oled.display();
+}
 void Display::splash()
 {
     showMessage("SIEE");

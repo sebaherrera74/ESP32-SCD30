@@ -1,4 +1,5 @@
 #include "ScreenManager.h"
+#include "Sensor.h"
 
 #include "Display.h"
 
@@ -16,7 +17,11 @@ void ScreenManager::splash()
 
 void ScreenManager::mainScreen()
 {
-    display.showMessage("Principal");
+  
+    display.showValue("CO2",
+                      sensor.getCO2(),
+                      "ppm");
+    
 }
 
 void ScreenManager::errorScreen(String texto)
@@ -26,5 +31,5 @@ void ScreenManager::errorScreen(String texto)
 
 void ScreenManager::update()
 {
-
+   mainScreen();
 }

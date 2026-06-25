@@ -2,11 +2,8 @@
 #define DISPLAY_H
 
 #include <Arduino.h>
-
 class Display
 {
-private:
-
 public:
 
     void begin();
@@ -17,9 +14,12 @@ public:
 
     void showMessage(String texto);
 
+    void showValue(String titulo,
+                   float valor,
+                   String unidad);
+
     void update();
 };
 
-extern Display display;
-
+extern Display display;   // <-- ESTA LÍNEA FALTA
 #endif

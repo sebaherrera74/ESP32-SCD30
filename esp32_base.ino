@@ -13,12 +13,15 @@ void setup()
     display.begin();
 
     screen.begin();
-
+    sensor.begin();
     screen.splash();
 
     logger.info("Sistema iniciado");
 }
 
 void loop(){
+     sensor.update();
+
+    screen.update();
   
 }
