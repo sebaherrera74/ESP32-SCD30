@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+
+# Arduino
+build/
+
+# Archivos temporales
+*.o
+*.obj
+*.tmp
+
+# Bases de datos
+*.db
+*.sqlite
+
+# Archivos de backup
+*.bak
