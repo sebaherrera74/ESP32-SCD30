@@ -1,8 +1,13 @@
 #ifndef SCREEN_MANAGER_H
 #define SCREEN_MANAGER_H
 #include <Arduino.h>
+#include "Timer.h"
+
 class ScreenManager
 {
+  private:
+
+    Timer _timer;
 public:
 
     void begin();

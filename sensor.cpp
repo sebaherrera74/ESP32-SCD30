@@ -12,16 +12,13 @@ void SensorManager::begin()
 
     _connected = true;
 
-    _lastRead = millis();
-}
+  }
 
 void SensorManager::update()
 {
-    if (millis() - _lastRead < 1000)
-        return;
-
-    _lastRead = millis();
-
+    if (!_timer.elapsed(1000))
+    return;
+    
     _co2 += 15;
 
     if (_co2 > 1500)

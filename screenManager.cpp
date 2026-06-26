@@ -29,7 +29,10 @@ void ScreenManager::errorScreen(String texto)
     display.showMessage(texto);
 }
 
-void ScreenManager::update()
-{
-   mainScreen();
+  void ScreenManager::update()
+  {
+    if (!_timer.elapsed(250))
+        return;
+
+    mainScreen();
 }

@@ -5,6 +5,9 @@
 #include "Web.h"
 #include "Log.h"
 #include "ScreenManager.h"
+#include "Timer.h"
+
+Timer timer;
 
 void setup()
 {
@@ -20,8 +23,10 @@ void setup()
 }
 
 void loop(){
-     sensor.update();
-
-    screen.update();
-  
+   if (timer.elapsed(1000))
+    {
+        logger.info("Pasó un segundo");
+    }
 }
+    
+  

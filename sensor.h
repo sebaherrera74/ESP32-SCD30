@@ -2,6 +2,7 @@
 #define SENSOR_H
 
 #include <Arduino.h>
+#include "Timer.h"
 
 class SensorManager
 {
@@ -12,8 +13,7 @@ private:
     float _humidity;
 
     bool _connected;
-
-    unsigned long _lastRead;
+    Timer _timer;
 
 public:
 
