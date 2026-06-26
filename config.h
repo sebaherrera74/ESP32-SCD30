@@ -17,6 +17,7 @@
 #define OLED_RESET        -1
 #define OLED_ADDRESS      0x3C
 
+
 //==================================================
 // I2C
 //==================================================
@@ -37,5 +38,6 @@
 
 #define TIEMPO_SENSOR     2000
 #define TIEMPO_DISPLAY    500
+const unsigned long SCREEN_TIME = 5000;
 
 #endif
