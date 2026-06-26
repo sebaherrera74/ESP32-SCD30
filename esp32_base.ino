@@ -22,11 +22,12 @@ void setup()
     logger.info("Sistema iniciado");
 }
 
-void loop(){
-   if (timer.elapsed(1000))
-    {
-        logger.info("Pasó un segundo");
-    }
+void loop()
+{
+    sensor.update();
+
+    screen.update();
 }
+
     
   

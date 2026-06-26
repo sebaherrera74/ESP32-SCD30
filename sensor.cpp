@@ -1,39 +1,70 @@
 #include "Sensor.h"
+#include "Log.h"
 
 SensorManager sensor;
 
 void SensorManager::begin()
 {
-    _co2 = 400;
+    logger.info("Iniciando SCD30");
 
-    _temperature = 25;
+    if (!_scd30.begin())
+    {
+        logger.error("SCD30 NO encontrado");
 
-    _humidity = 50;
+        _connected = false;
+        return;
+    }
+
+    logger.info("SCD30 encontrado");
 
     _connected = true;
 
-  }
+    _scd30.setMeasurementInterval(2);
+
+    _co2 = 0;
+    _temperature = 0;
+    _humidity = 0;
+}
+
+
+
 
 void SensorManager::update()
 {
-    if (!_timer.elapsed(1000))
-    return;
-    
-    _co2 += 15;
+    if (!_connected)
+    {
+        logger.error("Sensor desconectado");
+        return;
+    }
 
-    if (_co2 > 1500)
-        _co2 = 400;
+    if (!_timer.elapsed(500))
+        return;
 
-    _temperature += 0.2;
+    logger.info("Consultando SCD30");
 
-    if (_temperature > 30)
-        _temperature = 25;
+    if (!_scd30.dataReady())
+    {
+        logger.info("Esperando medicion...");
+        return;
+    }
 
-    _humidity += 1;
+    logger.info("Datos disponibles");
 
-    if (_humidity > 70)
-        _humidity = 50;
+    if (!_scd30.read())
+    {
+        logger.error("Error leyendo SCD30");
+        return;
+    }
+
+    logger.info("Lectura correcta");
+
+    _co2 = _scd30.CO2;
+    _temperature = _scd30.temperature;
+    _humidity = _scd30.relative_humidity;
+
+    logger.info("CO2 = " + String(_co2));
 }
+
 
 float SensorManager::getCO2()
 {

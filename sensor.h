@@ -3,11 +3,15 @@
 
 #include <Arduino.h>
 #include "Timer.h"
+#include <Adafruit_SCD30.h>
+
+
 
 class SensorManager
 {
 private:
 
+    Adafruit_SCD30 _scd30;
     float _co2;
     float _temperature;
     float _humidity;
