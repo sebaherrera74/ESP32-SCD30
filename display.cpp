@@ -1,7 +1,7 @@
 #include "Display.h"
 #include "Config.h"
 #include "Log.h"
-
+#include "Logo.h"
 
 
 #include <Wire.h>
@@ -72,11 +72,46 @@ void Display::showValue(String titulo,
 
     oled.display();
 }
+
+
+
 void Display::splash()
 {
     showMessage("SIEE");
 
     delay(1500);
+}
+
+void Display::showBoot(const char* nombre,
+                       const char* version)
+{
+    oled.clearDisplay();
+
+    // Logo
+    oled.drawBitmap(
+        4,
+        8,
+        logoSIEE,
+        LOGO_WIDTH,
+        LOGO_HEIGHT,
+        WHITE);
+
+    // Nombre del proyecto
+    oled.setTextColor(WHITE);
+    oled.setTextSize(1);
+
+    oled.setCursor(58, 15);
+    oled.println(nombre);
+
+    // Línea
+    oled.drawLine(58, 28, 122, 28, WHITE);
+
+    // Versión
+    oled.setCursor(58, 38);
+    oled.print("v");
+    oled.println(version);
+
+    oled.display();
 }
 
 void Display::update()

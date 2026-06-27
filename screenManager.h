@@ -6,6 +6,7 @@
 
 enum Screen
 {
+    SCREEN_BOOT,
     SCREEN_CO2,
     SCREEN_TEMP,
     SCREEN_HUM,
@@ -29,6 +30,8 @@ class ScreenManager
     void showHumidity();
 
     void showStatus();
+    
+    void showBoot();
 public:
 
     void begin();

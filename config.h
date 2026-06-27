@@ -1,6 +1,9 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define FW_NAME     "ESP32 BASE"
+#define FW_VERSION  "0.1.0"
+
 //==================================================
 // Información del proyecto
 //==================================================

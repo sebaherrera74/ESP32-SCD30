@@ -17,6 +17,9 @@ public:
     void showValue(String titulo,
                    float valor,
                    String unidad);
+                   
+    void showBoot(const char* nombre,
+              const char* version);
 
     void update();
 };

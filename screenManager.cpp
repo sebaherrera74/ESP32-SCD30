@@ -1,5 +1,6 @@
 #include "ScreenManager.h"
 #include "Sensor.h"
+#include "Config.h"
 
 #include "Display.h"
 #include "Config.h"
@@ -9,7 +10,7 @@ ScreenManager screen;
 Screen _currentScreen;
 void ScreenManager::begin()
 {
-    _currentScreen = SCREEN_CO2;
+   _currentScreen = SCREEN_BOOT;
 
 }
 
@@ -17,6 +18,9 @@ void ScreenManager::drawCurrentScreen()
 {
     switch (_currentScreen)
     {
+        case SCREEN_BOOT:
+        showBoot();
+        break;     
         case SCREEN_CO2:
 
             showCO2();
@@ -93,11 +97,24 @@ void ScreenManager::update()
 {
     drawCurrentScreen();
 
-    if (!_timer.elapsed(SCREEN_TIME ))
-        return;
+    // Tiempo del BOOT
+    if (_currentScreen == SCREEN_BOOT)
+    {
+        if (!_timer.elapsed(2000))
+            return;
+    }
+    else
+    {
+        if (!_timer.elapsed(SCREEN_TIME))
+            return;
+    }
 
     switch (_currentScreen)
     {
+        case SCREEN_BOOT:
+            _currentScreen = SCREEN_CO2;
+            break;
+
         case SCREEN_CO2:
             _currentScreen = SCREEN_TEMP;
             break;
@@ -114,4 +131,11 @@ void ScreenManager::update()
             _currentScreen = SCREEN_CO2;
             break;
     }
+}
+
+void ScreenManager::showBoot()
+{
+    display.showBoot(
+        FW_NAME,
+        FW_VERSION);
 }
