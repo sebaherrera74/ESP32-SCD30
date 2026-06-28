@@ -6,7 +6,7 @@
 class Timer
 {
 private:
-
+    unsigned long _lastTime = 0;
     unsigned long _previous;
 
 public:

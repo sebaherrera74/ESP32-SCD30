@@ -10,7 +10,7 @@ ScreenManager screen;
 Screen _currentScreen;
 void ScreenManager::begin()
 {
-   _currentScreen = SCREEN_BOOT;
+  changeScreen(SCREEN_BOOT);
 
 }
 
@@ -100,7 +100,7 @@ void ScreenManager::update()
     // Tiempo del BOOT
     if (_currentScreen == SCREEN_BOOT)
     {
-        if (!_timer.elapsed(2000))
+        if (!_timer.elapsed(5000))
             return;
     }
     else
@@ -112,23 +112,23 @@ void ScreenManager::update()
     switch (_currentScreen)
     {
         case SCREEN_BOOT:
-            _currentScreen = SCREEN_CO2;
+            changeScreen(SCREEN_CO2);
             break;
 
         case SCREEN_CO2:
-            _currentScreen = SCREEN_TEMP;
+              changeScreen(SCREEN_TEMP);
             break;
 
         case SCREEN_TEMP:
-            _currentScreen = SCREEN_HUM;
+            changeScreen(SCREEN_HUM);
             break;
 
         case SCREEN_HUM:
-            _currentScreen = SCREEN_STATUS;
+             changeScreen(SCREEN_STATUS);
             break;
 
         case SCREEN_STATUS:
-            _currentScreen = SCREEN_CO2;
+            changeScreen(SCREEN_CO2);
             break;
     }
 }
@@ -138,4 +138,11 @@ void ScreenManager::showBoot()
     display.showBoot(
         FW_NAME,
         FW_VERSION);
+}
+
+void ScreenManager::changeScreen(Screen next)
+{
+    _currentScreen = next;
+
+    _timer.reset();
 }

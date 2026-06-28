@@ -18,5 +18,5 @@ bool Timer::elapsed(unsigned long interval)
 
 void Timer::reset()
 {
-    _previous = millis();
+    _lastTime = millis();
 }

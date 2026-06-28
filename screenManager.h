@@ -32,6 +32,10 @@ class ScreenManager
     void showStatus();
     
     void showBoot();
+
+    void changeScreen(Screen next);
+
+    
 public:
 
     void begin();
