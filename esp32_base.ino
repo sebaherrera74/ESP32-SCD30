@@ -18,6 +18,7 @@ void setup()
     screen.begin();
     sensor.begin();
     screen.splash();
+    wifi.begin();
 
     logger.info("Sistema iniciado");
 }
@@ -27,6 +28,7 @@ void loop()
     sensor.update();
 
     screen.update();
+    wifi.update();
 }
 
     
