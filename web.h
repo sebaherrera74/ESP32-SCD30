@@ -10,6 +10,7 @@ public:
     void begin();
 
     void update();
+    String buildPage();
 
 };
 
