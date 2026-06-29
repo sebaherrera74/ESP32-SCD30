@@ -6,6 +6,7 @@
 #include "Log.h"
 #include "ScreenManager.h"
 #include "Timer.h"
+#include "Web.h"
 
 Timer timer;
 
@@ -19,6 +20,7 @@ void setup()
     sensor.begin();
     screen.splash();
     wifi.begin();
+    web.begin();
 
     logger.info("Sistema iniciado");
 }
@@ -29,6 +31,7 @@ void loop()
 
     screen.update();
     wifi.update();
+    web.update();
 }
 
     
