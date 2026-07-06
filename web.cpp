@@ -29,18 +29,24 @@ void WebManager::update()
   server.handleClient();
 }
 
+
+
 String WebManager::buildPage()
 {
     String html;
 
-    html += "<html>";
+    html += buildHeader();
 
-    html += "<head>";
-    html += "<title>SIEE ESP32 BASE</title>";
-    html += "<meta http-equiv=\"refresh\" content=\"2\">";
-    html += "</head>";
-  
-    html += "<body>";
+    html += buildBody();
+
+    html += buildFooter();
+
+    return html;
+}
+
+String WebManager::buildBody()
+{
+    String html;
 
     html += "<h1>SIEE ESP32 BASE</h1>";
 
@@ -65,9 +71,36 @@ String WebManager::buildPage()
 
     html += "<p>SIEE Framework</p>";
 
+    return html;
+}
+
+
+String WebManager::buildFooter()
+{
+    String html;
+
     html += "</body>";
 
     html += "</html>";
+
+    return html;
+}
+
+String WebManager::buildHeader()
+{
+    String html;
+
+    html += "<html>";
+
+    html += "<head>";
+
+    html += "<title>SIEE ESP32 BASE</title>";
+
+    html += "<meta http-equiv=\"refresh\" content=\"2\">";
+
+    html += "</head>";
+
+    html += "<body>";
 
     return html;
 }

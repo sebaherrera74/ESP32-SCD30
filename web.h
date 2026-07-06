@@ -5,6 +5,13 @@
 
 class WebManager
 {
+  private:
+
+    String buildHeader();
+
+    String buildBody();
+
+    String buildFooter();
 public:
 
     void begin();
