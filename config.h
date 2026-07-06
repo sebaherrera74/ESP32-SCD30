@@ -3,6 +3,8 @@
 
 #define FW_NAME     "ESP32 BASE"
 #define FW_VERSION  "0.1.0"
+#define RELAY_PIN 2
+
 
 //====================================================
 // wifi

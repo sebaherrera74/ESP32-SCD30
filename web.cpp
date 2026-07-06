@@ -2,6 +2,7 @@
 #include <WebServer.h>
 #include "log.h"
 #include "sensor.h"
+#include "Relay.h"
 
 WebServer server(80);
 WebManager web;
@@ -14,12 +15,35 @@ void handleRoot()
         "text/html",
         web.buildPage());
 }
+void handleOn()
+{
+    relay.on();
+
+    server.send(
+        200,
+        "text/html",
+        web.buildPage());
+}
+
+void handleOff()
+{
+    relay.off();
+
+    server.send(
+        200,
+        "text/html",
+        web.buildPage());
+}
 
 void WebManager::begin()
 {
   server.on("/", handleRoot);
 
-  server.begin();
+  server.on("/on", handleOn);
+
+  server.on("/off", handleOff);
+
+   server.begin();
 
   logger.info("Servidor Web iniciado");
 }
@@ -71,6 +95,25 @@ String WebManager::buildBody()
 
     html += "<p>SIEE Framework</p>";
 
+    html += "<br><br>";
+
+   html += "<a href='/on'>";
+   html += "<button>ENCENDER</button>";
+   html += "</a>";
+
+   html += "<br><br>";
+
+   html += "<a href='/off'>";
+   html += "<button>APAGAR</button>";
+   html += "</a>";
+   html += "<h2>Relé</h2>";
+   if (relay.isOn()){
+    html += "<p>🟢 ENCENDIDO</p>";
+   } 
+   else
+   {
+   html += "<p>🔴 APAGADO</p>";
+   }
     return html;
 }
 
@@ -79,9 +122,48 @@ String WebManager::buildFooter()
 {
     String html;
 
+    html += "</div>";
+
     html += "</body>";
 
     html += "</html>";
+
+    return html;
+}
+
+String WebManager::buildStyle()
+{
+    String html;
+
+    html += "<style>";
+
+    html += "body{";
+    html += "font-family:Arial;";
+    html += "background:#ECEFF1;";
+    html += "text-align:center;";
+    html += "margin:30px;";
+    html += "}";
+
+    html += ".card{";
+    html += "background:white;";
+    html += "padding:25px;";
+    html += "border-radius:15px;";
+    html += "box-shadow:0px 4px 15px rgba(0,0,0,0.3);";
+    html += "display:inline-block;";
+    html += "min-width:320px;";
+    html += "}";
+
+    html += "button{";
+    html += "width:180px;";
+    html += "height:45px;";
+    html += "font-size:18px;";
+    html += "border:none;";
+    html += "border-radius:8px;";
+    html += "margin:10px;";
+    html += "cursor:pointer;";
+    html += "}";
+
+    html += "</style>";
 
     return html;
 }
@@ -94,13 +176,19 @@ String WebManager::buildHeader()
 
     html += "<head>";
 
+    html += "<meta charset='UTF-8'>";
+
     html += "<title>SIEE ESP32 BASE</title>";
 
-    html += "<meta http-equiv=\"refresh\" content=\"2\">";
+    html += "<meta http-equiv='refresh' content='2'>";
+
+    html += buildStyle();
 
     html += "</head>";
 
     html += "<body>";
+
+    html += "<div class='card'>";
 
     return html;
 }

@@ -7,6 +7,8 @@ class WebManager
 {
   private:
 
+   String buildStyle();
+
     String buildHeader();
 
     String buildBody();

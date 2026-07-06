@@ -7,6 +7,7 @@
 #include "ScreenManager.h"
 #include "Timer.h"
 #include "Web.h"
+#include "Relay.h"
 
 Timer timer;
 
@@ -21,7 +22,7 @@ void setup()
     screen.splash();
     wifi.begin();
     web.begin();
-
+    relay.begin();
     logger.info("Sistema iniciado");
 }
 
