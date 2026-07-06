@@ -8,6 +8,7 @@
 #include "Timer.h"
 #include "Web.h"
 #include "Relay.h"
+#include "ESPNow.h"
 
 Timer timer;
 
@@ -23,6 +24,7 @@ void setup()
     wifi.begin();
     web.begin();
     relay.begin();
+    espNow.begin();
     logger.info("Sistema iniciado");
 }
 
@@ -33,6 +35,7 @@ void loop()
     screen.update();
     wifi.update();
     web.update();
+    espNow.update();
 }
 
     
