@@ -510,6 +510,79 @@ Construir un Framework IoT reutilizable para:
 
 ---
 
+
+# Actualización - Etapa Web y Control Remoto
+
+## Refactorización del WebManager
+
+El WebManager fue dividido en pequeñas funciones con una única responsabilidad.
+
+Antes:
+
+buildPage()
+
+↓
+
+HTML completo
+
+Ahora:
+
+buildPage()
+
+↓
+
+buildHeader()
+
+↓
+
+buildStyle()
+
+↓
+
+buildBody()
+
+↓
+
+buildFooter()
+
+### Beneficios
+
+- Código más legible.
+- Fácil mantenimiento.
+- Permite modificar el CSS sin tocar el contenido.
+- Facilita agregar nuevas secciones al Dashboard.
+
+---
+
+## Arquitectura del servidor Web
+
+Cliente (Navegador)
+
+↓
+
+HTTP GET
+
+↓
+
+WebServer
+
+↓
+
+handleRoot()
+
+↓
+
+WebManager::buildPage()
+
+↓
+
+HTML
+
+↓
+
+Cliente
+
+
 # Reflexión
 
 El proyecto comenzó como un simple ejemplo para leer un sensor SCD30.
