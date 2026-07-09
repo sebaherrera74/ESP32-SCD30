@@ -15,9 +15,7 @@ Timer timer;
 void setup()
 {
     logger.begin();
-
     display.begin();
-
     screen.begin();
     sensor.begin();
     screen.splash();
@@ -31,7 +29,6 @@ void setup()
 void loop()
 {
     sensor.update();
-
     screen.update();
     wifi.update();
     web.update();

@@ -583,6 +583,22 @@ HTML
 Cliente
 
 
+## Estado del desarrollo
+
+### ESP-NOW
+
+Se implementó la estructura inicial del módulo `ESPNow`:
+
+- Inicialización del protocolo.
+- Registro de Peer.
+- Protocolo compartido (`Protocol.h`).
+- Proyecto independiente `ESP32_SLAVE`.
+
+Las pruebas de comunicación entre dos ESP32 quedan temporalmente suspendidas hasta verificar el entorno de hardware (cables USB y configuración de ambas placas).
+
+El desarrollo continúa sobre `ESP32_BASE`, priorizando mejoras en la interfaz web y la arquitectura del framework.
+
+
 # Reflexión
 
 El proyecto comenzó como un simple ejemplo para leer un sensor SCD30.

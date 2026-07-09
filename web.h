@@ -14,6 +14,14 @@ class WebManager
     String buildBody();
 
     String buildFooter();
+
+    String buildTitle();
+
+    String buildStatus();
+
+    String buildSensors();
+
+    String buildRelay();
 public:
 
     void begin();
