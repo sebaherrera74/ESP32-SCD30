@@ -22,13 +22,15 @@ class WebManager
     String buildSensors();
 
     String buildRelay();
+    
+   
 public:
 
     void begin();
 
     void update();
     String buildPage();
-
+   String buildSensorJson();
 };
 
 extern WebManager web;

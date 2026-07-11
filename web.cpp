@@ -34,6 +34,14 @@
           "text/html",
           web.buildPage());
   }
+
+  void handleSensor()
+{
+    server.send(
+        200,
+        "application/json",
+        web.buildSensorJson());
+}
   
   void WebManager::begin()
   {
@@ -43,11 +51,13 @@
   
     server.on("/off", handleOff);
   
-     server.begin();
+    server.begin();
+    server.on("/sensor", handleSensor);
   
     logger.info("Servidor Web iniciado");
   }
-  
+
+
   void WebManager::update()
   {
     server.handleClient();
@@ -221,3 +231,27 @@
   
       return html;
   }
+
+  String WebManager::buildSensorJson()
+{
+    String json;
+
+    json += "{";
+
+    json += "\"co2\":";
+    json += String(sensor.getCO2(), 0);
+
+    json += ",";
+
+    json += "\"temperature\":";
+    json += String(sensor.getTemperature(), 1);
+
+    json += ",";
+
+    json += "\"humidity\":";
+    json += String(sensor.getHumidity(), 1);
+
+    json += "}";
+
+    return json;
+}
