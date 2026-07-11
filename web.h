@@ -22,6 +22,8 @@ class WebManager
     String buildSensors();
 
     String buildRelay();
+    String buildSensorJson();
+    String buildInfoJson();
     
    
 public:
@@ -30,7 +32,10 @@ public:
 
     void update();
     String buildPage();
-   String buildSensorJson();
+    //String buildSensorJson();
+    void sendSensorJson();
+    
+    void sendInfoJson();
 };
 
 extern WebManager web;

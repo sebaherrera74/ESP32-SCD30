@@ -6,16 +6,16 @@
   
   WebServer server(80);
   WebManager web;
-  
-  
-  void handleRoot()
+
+ 
+void handleRoot()
   {
       server.send(
           200,
           "text/html",
           web.buildPage());
   }
-  void handleOn()
+void handleOn()
   {
       relay.on();
   
@@ -25,7 +25,7 @@
           web.buildPage());
   }
   
-  void handleOff()
+void handleOff()
   {
       relay.off();
   
@@ -35,12 +35,29 @@
           web.buildPage());
   }
 
-  void handleSensor()
+void handleSensor()
+{
+    web.sendSensorJson();
+}
+
+void handleInfo()
+{
+    web.sendInfoJson();
+}
+void WebManager::sendSensorJson()
 {
     server.send(
         200,
         "application/json",
-        web.buildSensorJson());
+        buildSensorJson());
+}
+
+void WebManager::sendInfoJson()
+{
+    server.send(
+        200,
+        "application/json",
+        buildInfoJson());
 }
   
   void WebManager::begin()
@@ -53,6 +70,7 @@
   
     server.begin();
     server.on("/sensor", handleSensor);
+    server.on("/info", handleInfo);
   
     logger.info("Servidor Web iniciado");
   }
@@ -250,6 +268,21 @@
 
     json += "\"humidity\":";
     json += String(sensor.getHumidity(), 1);
+
+    json += "}";
+
+    return json;
+}
+String WebManager::buildInfoJson()
+{
+    String json;
+
+    json += "{";
+
+    json += "\"name\":\"ESP32_BASE\",";
+    json += "\"version\":\"0.1.0\",";
+    json += "\"author\":\"Sebastian Herrera\",";
+    json += "\"framework\":\"SIEE Framework\"";
 
     json += "}";
 
