@@ -3,7 +3,7 @@
   #include "log.h"
   #include "sensor.h"
   #include "Relay.h"
-  
+  #include "JsonBuilder.h"
   WebServer server(80);
   WebManager web;
 
@@ -250,41 +250,30 @@ void WebManager::sendInfoJson()
       return html;
   }
 
-  String WebManager::buildSensorJson()
+String WebManager::buildSensorJson()
 {
-    String json;
+    JsonBuilder json;
 
-    json += "{";
+    json.add("co2", sensor.getCO2());
 
-    json += "\"co2\":";
-    json += String(sensor.getCO2(), 0);
+    json.add("temperature", sensor.getTemperature());
 
-    json += ",";
+    json.add("humidity", sensor.getHumidity());
 
-    json += "\"temperature\":";
-    json += String(sensor.getTemperature(), 1);
-
-    json += ",";
-
-    json += "\"humidity\":";
-    json += String(sensor.getHumidity(), 1);
-
-    json += "}";
-
-    return json;
+    return json.build();
 }
+
 String WebManager::buildInfoJson()
 {
-    String json;
+    JsonBuilder json;
 
-    json += "{";
+    json.add("name", "ESP32_BASE");
 
-    json += "\"name\":\"ESP32_BASE\",";
-    json += "\"version\":\"0.1.0\",";
-    json += "\"author\":\"Sebastian Herrera\",";
-    json += "\"framework\":\"SIEE Framework\"";
+    json.add("version", "0.1.0");
 
-    json += "}";
+    json.add("author", "Sebastian Herrera");
 
-    return json;
+    json.add("framework", "SIEE Framework");
+
+    return json.build();
 }
